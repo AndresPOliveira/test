@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" name="chName" id="chName">
+    <button onclick="findImg()">Mudar imagem</button>
+    <br>
+    <img src="" alt="" id="chImg" name="chImg">
+</body>
+
+</html>
+
+<script>
+    function findImg() {
+        let name = document.getElementById("chName").value;
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify({
+            "query": `{ Character(search:"${name}") { id name { full native } image{ large medium } description gender dateOfBirth { year month day } age bloodType }}`
+        });
+
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+        var data ;
+        fetch("http://localhost:8080/getCharacter", requestOptions)
+            .then(response => response.text())
+            .then(result => {
+                data = JSON.parse(result);
+                console.log(data.imgLarge)
+                document.getElementById("chImg").src = data.imgLarge;
+                
+            })
+            .catch(error => console.log('error', error));
+        
+    }
+</script>

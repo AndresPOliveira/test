@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+
+<script>
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Cookie", "laravel_session=ziMhHNCy1KmcWMvqX0ifxpJL4VA9pvgCL8kRGdXD");
+
+    var raw = JSON.stringify({
+        "query": "{ Page(perPage: 20,page: 1){ pageInfo{ hasNextPage } media{ id genres episodes title { romaji } bannerImage coverImage { extraLarge large medium color } } } }"
+    });
+
+    var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+    };
+
+    fetch("https://graphql.anilist.co", requestOptions)
+        .then(response => response.text())
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error));
+</script>
