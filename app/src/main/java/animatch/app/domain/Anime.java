@@ -7,13 +7,12 @@ import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
-public class List {
+public class Anime {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private int userId;
+    private int id ;
     @NotNull
+    private int uuid;
     private String name;
-
 }

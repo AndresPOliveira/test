@@ -7,10 +7,9 @@ import jakarta.persistence.Id;
 import jakarta.validation.constraints.*;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Entity
-public class User {
+public class AniUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,6 +25,5 @@ public class User {
     private String profileImage;
     private String coverImage;
     @Past
-    @NotNull
     private LocalDate nascimento;
 }
