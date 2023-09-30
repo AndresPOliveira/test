@@ -4,4 +4,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import animatch.app.domain.List;
 
 public interface ListRepository extends JpaRepository<List,Integer> {
+    java.util.List<List> findAllByUserId(Integer id);
 }

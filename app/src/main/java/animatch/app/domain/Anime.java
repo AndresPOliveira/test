@@ -15,4 +15,16 @@ public class Anime {
     @NotNull
     private int uuid;
     private String name;
+
+    public int getId() {
+        return id;
+    }
+
+    public int getUuid() {
+        return uuid;
+    }
+
+    public String getName() {
+        return name;
+    }
 }
